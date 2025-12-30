@@ -234,7 +234,7 @@ wellRegistry <- function(id, language) {
           # Get well names
           popup_names <- moduleData$wells[, .(
             borehole_id,
-            popup_name = fifelse(
+            popup_name = data.table::fifelse(
               is.na(borehole_name),
               tr("borehole_unnamed", language$language),
               borehole_name
@@ -243,7 +243,7 @@ wellRegistry <- function(id, language) {
           # drill date for each well
           drill_date <- moduleData$wells[, .(
             borehole_id,
-            completion_date = fifelse(
+            completion_date = data.table::fifelse(
               is.na(completion_date),
               tr("unknown", language$language),
               as.character(completion_date)
