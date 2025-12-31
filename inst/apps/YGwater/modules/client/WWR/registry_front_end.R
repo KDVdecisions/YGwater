@@ -249,9 +249,12 @@ wellRegistry <- function(id, language) {
               as.character(completion_date)
             )
           )]
-          docs_count <- moduleData$boreholes_docs[, .(
-            document_count = .N
-          ), by = borehole_id]
+          docs_count <- moduleData$boreholes_docs[,
+            .(
+              document_count = .N
+            ),
+            by = borehole_id
+          ]
 
           # Combine all the data
           tmp <- data.table::copy(popup_names) # Use copy to avoid modifying the original data table
@@ -428,7 +431,8 @@ wellRegistry <- function(id, language) {
       popup_data <- popupData()
 
       wells_sub <- data.table::copy(moduleData$wells)
-      wells_sub[moduleData$purposes,
+      wells_sub[
+        moduleData$purposes,
         on = .(borehole_well_purpose_id),
         purpose_name := i.purpose_name
       ]
